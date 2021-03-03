@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { Printer, PrintOptions } from '@ionic-native/printer/ngx';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
+import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 
 @Component({
   selector: 'app-tab1',
@@ -14,7 +15,8 @@ export class Tab1Page {
     private camera: PhotoService,
     private barcodeScanner: BarcodeScanner,
     private printer: Printer,
-    private bluetoothSerial: BluetoothSerial
+    private bluetoothSerial: BluetoothSerial,
+    private firebase: FirebaseX
   ) {
     this.printer
       .isAvailable()
@@ -25,6 +27,14 @@ export class Tab1Page {
         console.log('printer not available' + error);
       });
     this.bluetoothSerial.list().then((e) => console.log(e));
+
+    this.firebase
+      .getToken()
+      .then((token) => console.log(`The token is ${token}`));
+
+    this.firebase
+      .onMessageReceived()
+      .subscribe((data) => console.log(`FCM message: ${data}`));
   }
 
   onClickMe() {

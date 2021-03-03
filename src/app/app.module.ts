@@ -10,12 +10,13 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { Printer } from '@ionic-native/printer/ngx';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
-
+import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [
+    FirebaseX,
     BluetoothSerial,
     Printer,
     Camera,
