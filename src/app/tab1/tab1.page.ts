@@ -4,6 +4,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { Printer, PrintOptions } from '@ionic-native/printer/ngx';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
 import { FirebaseX } from '@ionic-native/firebase-x/ngx';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tab1',
@@ -11,12 +13,15 @@ import { FirebaseX } from '@ionic-native/firebase-x/ngx';
   styleUrls: ['tab1.page.scss'],
 })
 export class Tab1Page {
+  item: {};
+  bookingListRef: AngularFireList<any>;
   constructor(
     private camera: PhotoService,
     private barcodeScanner: BarcodeScanner,
     private printer: Printer,
     private bluetoothSerial: BluetoothSerial,
-    private firebase: FirebaseX
+    private firebase: FirebaseX,
+    private db: AngularFireDatabase
   ) {
     this.printer
       .isAvailable()
@@ -35,6 +40,25 @@ export class Tab1Page {
     this.firebase
       .onMessageReceived()
       .subscribe((data) => console.log(`FCM message: ${data}`));
+
+    this.db
+      .object('price')
+      .valueChanges()
+      .subscribe((data) => {
+        this.item = data;
+      });
+    this.db
+      .object('price')
+      .snapshotChanges()
+      .subscribe((action) => {
+        console.log({ action });
+      });
+
+    // this.db.object('price').set(9999);
+    // this.bookingListRef.push({
+    //   name: 'A',
+    //   price: 10,
+    // });
   }
 
   onClickMe() {
