@@ -23,23 +23,23 @@ export class Tab1Page {
     private firebase: FirebaseX,
     private db: AngularFireDatabase
   ) {
-    this.printer
-      .isAvailable()
-      .then(() => {
-        console.log('printer available');
-      })
-      .catch((error) => {
-        console.log('printer not available' + error);
-      });
-    this.bluetoothSerial.list().then((e) => console.log(e));
+    // this.printer
+    //   .isAvailable()
+    //   .then(() => {
+    //     console.log('printer available');
+    //   })
+    //   .catch((error) => {
+    //     console.log('printer not available' + error);
+    //   });
+    // this.bluetoothSerial.list().then((e) => console.log(e));
 
-    this.firebase
-      .getToken()
-      .then((token) => console.log(`The token is ${token}`));
+    // this.firebase
+    //   .getToken()
+    //   .then((token) => console.log(`The token is ${token}`));
 
-    this.firebase
-      .onMessageReceived()
-      .subscribe((data) => console.log(`FCM message: ${data}`));
+    // this.firebase
+    //   .onMessageReceived()
+    //   .subscribe((data) => console.log(`FCM message: ${data}`));
 
     this.db
       .object('price')

@@ -29,7 +29,10 @@
     "@ionic-native/firebase-x": "^5.31.1",
     "@ionic-native/printer": "^5.31.1",
     "@ionic/angular": "^5.5.2",
+    "@ngx-translate/core": "^13.0.0",
+    "@ngx-translate/http-loader": "^6.0.0",
     "firebase": "^8.2.9",
+    "ionic-angular": "^3.9.10",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

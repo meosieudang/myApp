@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,15 +18,30 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { environment } from 'src/environments/environment';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
+      defaultLanguage: 'en',
+    }),
   ],
   providers: [
     AngularFireStorageModule,

@@ -1,0 +1,4 @@
+{
+  "HELLO": "Bonjour",
+  "data": { "name": "je m'appelle {{name_value}}" }
+}
