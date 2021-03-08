@@ -5,7 +5,6 @@ import { Printer, PrintOptions } from '@ionic-native/printer/ngx';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
 import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tab1',
@@ -14,6 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class Tab1Page {
   item: {};
+  price: any;
   bookingListRef: AngularFireList<any>;
   constructor(
     private camera: PhotoService,
@@ -40,11 +40,18 @@ export class Tab1Page {
     // this.firebase
     //   .onMessageReceived()
     //   .subscribe((data) => console.log(`FCM message: ${data}`));
-
     this.db
       .object('price')
       .valueChanges()
       .subscribe((data) => {
+        console.log({ data });
+        this.price = data;
+      });
+    this.db
+      .object('item')
+      .valueChanges()
+      .subscribe((data) => {
+        console.log({ data });
         this.item = data;
       });
     this.db
