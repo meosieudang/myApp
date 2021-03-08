@@ -1,4 +1,4 @@
 {
-  "HELLO": "Xin chao",
+  "HELLO": "Xin chào",
   "data": { "name": "Tôi tên là {{name_value}}" }
 }
