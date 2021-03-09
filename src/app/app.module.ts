@@ -12,7 +12,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { Printer } from '@ionic-native/printer/ngx';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
 import { FirebaseX } from '@ionic-native/firebase-x/ngx';
-
+import { Pedometer } from '@ionic-native/pedometer/ngx';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
@@ -60,6 +60,7 @@ export function createTranslateLoader(http: HttpClient) {
     Printer,
     Camera,
     BarcodeScanner,
+    Pedometer,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent],
